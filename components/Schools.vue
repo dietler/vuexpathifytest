@@ -129,6 +129,9 @@ export default {
                 schools.getLayout().then(layout => {
                   const values = layout.qHyperCube.qDataPages[0].qMatrix;
                   for (let m = 0; m < values.length; m++) {
+                    // console.log("AD12", m);
+                    // let schoolList = [{ name: "School" + m, slug: "slugone" }];
+                    this.$store.set("schools/ADD", schoolList);
                     searchResults.push({
                       name: values[m][0]["qText"],
                       slug: values[m][1]["qText"],
