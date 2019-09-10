@@ -1,0 +1,19 @@
+{
+  "name": "vuexpathifytest",
+  "version": "1.0.0",
+  "description": "My breathtaking Nuxt.js project",
+  "author": "",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "enigma.js": "^2.4.0",
+    "nuxt": "^2.0.0",
+    "vuex-pathify": "^1.4.0"
+  },
+  "devDependencies": {}
+}
