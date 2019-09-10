@@ -3,6 +3,7 @@
     <h1>Schools:</h1>
     <div>
       <button @click="setArraySchools">setArraySchools</button>
+      <button @click="pushArraySchools">pushArraySchools</button>
       <button @click="setQlikSchools">setQlikSchools</button>
     </div>
     <h2>List:</h2>
@@ -34,6 +35,11 @@ export default {
         { name: "School Three", slug: "slugthree" }
       ];
       this.$store.set("schools/list", schoolList);
+    },
+    pushArraySchools() {
+      // use automatically-created commits
+      let schoolList = [{ name: "School" + Math.random(), slug: "slugone" }];
+      this.$store.set("schools/ADD", schoolList);
     },
     setQlikSchools() {
       console.log("AD4");
@@ -120,30 +126,30 @@ export default {
             schools
               .getLayout()
               .then(
-                schools
-                  .getLayout()
-                  .then(layout => {
-                    const values = layout.qHyperCube.qDataPages[0].qMatrix;
-                    for (let m = 0; m < values.length; m++) {
-                      searchResults.push({
-                        name: values[m][0]["qText"],
-                        slug: values[m][1]["qText"],
-                        slugid: parseInt(values[m][1]["qElemNumber"], 0),
-                        sector: values[m][2]["qText"],
-                        network: values[m][3]["qText"],
-                        // studyarea: values[m][4]['qText'],
-                        councildistrict: values[m][4]["qText"],
-                        admissiontype: values[m][5]["qText"],
-                        schoollevel: values[m][6]["qText"]
-                      });
-                    }
-                    console.log("AD1",searchResults);
-                    this.$store.set("schools/list", searchResults);
-                  })
-                  .then(() => {
-                    console.log("AD2");
-                    this.$store.set("schools/list", searchResults);
-                  })
+                schools.getLayout().then(layout => {
+                  const values = layout.qHyperCube.qDataPages[0].qMatrix;
+                  for (let m = 0; m < values.length; m++) {
+                    searchResults.push({
+                      name: values[m][0]["qText"],
+                      slug: values[m][1]["qText"],
+                      slugid: parseInt(values[m][1]["qElemNumber"], 0),
+                      sector: values[m][2]["qText"],
+                      network: values[m][3]["qText"],
+                      // studyarea: values[m][4]['qText'],
+                      councildistrict: values[m][4]["qText"],
+                      admissiontype: values[m][5]["qText"],
+                      schoollevel: values[m][6]["qText"]
+                    });
+                    console.log("AD11", searchResults[m]);
+                    this.$store.set("schools/ADD", searchResults[m]);
+                  }
+                  // console.log("AD1", searchResults);
+                  // this.$store.set("schools/list", searchResults);
+                })
+                // .then(() => {
+                //   console.log("AD2");
+                //   this.$store.set("schools/list", searchResults);
+                // })
               )
               .catch(err => console.log(err));
           });

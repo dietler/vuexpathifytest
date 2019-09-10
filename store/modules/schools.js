@@ -13,6 +13,10 @@ const mutations = {
   // add manual mutation
   INCREMENT(state) {
     state.value++
+  },
+
+  SET_ADD(state, school) {
+    state.list.push(school[0])
   }
 }
 
